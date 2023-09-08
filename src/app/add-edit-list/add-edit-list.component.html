@@ -6,11 +6,11 @@
       <div class="row">
         <mat-form-field appearance="outline">
           <mat-label>Task</mat-label>
-          <input matInput placeholder="Eg. Cook" formControlName="taskName">
+          <input matInput placeholder="Eg. Cook" formControlName="taskName" required="true">
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Choose a date</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="date">
+          <input matInput [matDatepicker]="picker" formControlName="date" required="true">
           <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
@@ -20,14 +20,14 @@
       <div class="row">
         <mat-form-field appearance="outline">
           <mat-label>Add description</mat-label>
-          <textarea matInput placeholder="eg. cook rice and chicken" formControlName="description"></textarea>
+          <textarea matInput placeholder="eg. cook rice and chicken" formControlName="description" required="true"></textarea>
         </mat-form-field>
       </div>
 
       <div class="row">
         <mat-form-field appearance="outline">
           <mat-label>Priority</mat-label>
-          <mat-select formControlName="priority">
+          <mat-select formControlName="priority" required="true">
             <mat-option *ngFor="let priority of priorities" [value]="priority">{{priority}}
             </mat-option>
           </mat-select>

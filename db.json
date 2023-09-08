@@ -1,0 +1,35 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "tasks": [
+    {
+      "taskName": "Cook",
+      "date": "2023-09-17T22:00:00.000Z",
+      "description": "Cook rice and chicken",
+      "priority": "Medium",
+      "id": 1
+    },
+    {
+      "taskName": "Cook",
+      "date": "2023-09-18T22:00:00.000Z",
+      "description": "Cook rice and chicken",
+      "priority": "Medium",
+      "id": 2
+    }
+  ]
+}
