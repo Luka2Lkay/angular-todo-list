@@ -12,7 +12,8 @@ title = "To Do List"
 
 constructor(private _dialogue: MatDialog){}
 
-openAddEditForm() {
+openAddEditForm(): void {
   this._dialogue.open(AddEditListComponent)
 }
+
 }
