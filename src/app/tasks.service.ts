@@ -12,5 +12,8 @@ export class TasksService {
   addTask(data:any): Observable<any> {
     return this._http.post('http://localhost:3000/tasks', data);
   }
-  
+
+  getTaskList(): Observable<any> {
+    return this._http.get('http://localhost:3000/tasks');
+  }
 }

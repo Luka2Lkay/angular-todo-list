@@ -2,3 +2,30 @@
     flex: 1 1 auto;
   }
   
+  .high{
+    color: red;
+  }
+
+  .medium{
+    color: orange;
+  }
+
+  .low{
+    color: green;
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  .content-textarea {
+    max-width: 20em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .container {
+    width: 80%;
+    margin: 5em auto;
+  }
