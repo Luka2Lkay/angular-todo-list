@@ -47,6 +47,14 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  deleteTask (id: number) {
+    this._taskService.deleteTask(id).subscribe({
+      next: () => {
+        alert('deleted')
+      },
+      error: console.log
+    })
+  }
   ngOnInit(): void {
     this.getTaskList();
   }
