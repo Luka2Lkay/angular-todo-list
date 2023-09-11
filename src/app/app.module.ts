@@ -36,7 +36,7 @@ import { AddEditListComponent } from './add-edit-list/add-edit-list.component';
     ReactiveFormsModule,
     HttpClientModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

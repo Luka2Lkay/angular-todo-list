@@ -11,6 +11,7 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
+
 export class DashboardComponent implements OnInit {
   title = 'To Do List';
 
@@ -33,7 +34,13 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   openAddEditForm(): void {
-    this._dialogue.open(AddEditListComponent);
+    const dialogRef = this._dialogue.open(AddEditListComponent);
+    dialogRef.afterClosed().subscribe({
+      next: () => {
+        this.getTaskList();
+      },
+      error: console.log,
+    });
   }
 
   getTaskList() {
@@ -47,14 +54,16 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  deleteTask (id: number) {
+  deleteTask(id: number) {
     this._taskService.deleteTask(id).subscribe({
       next: () => {
-        alert('deleted')
+        alert('deleted');
+        this.getTaskList();
       },
-      error: console.log
-    })
+      error: console.log,
+    });
   }
+
   ngOnInit(): void {
     this.getTaskList();
   }
@@ -66,5 +75,15 @@ export class DashboardComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  openEditForm(data: any): void {
+    const dialogRef = this._dialogue.open(AddEditListComponent, {data});
+    dialogRef.afterClosed().subscribe({
+      next: () => {
+        this.getTaskList();
+      },
+      error: console.log,
+    });
   }
 }

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { TasksService } from '../tasks.service';
-import { DialogRef } from '@angular/cdk/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-edit-list',
@@ -18,23 +18,44 @@ export class AddEditListComponent implements OnInit {
 
   priorities: string[] = ['High', 'Medium', 'Low'];
 
-  constructor(private _formBuilder: FormBuilder, private _taskService: TasksService, private _dialogRef: DialogRef<AddEditListComponent>) {}
+  constructor(
+    private _formBuilder: FormBuilder,
+    private _taskService: TasksService,
+    private _dialogRef: MatDialogRef<AddEditListComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
 
   ngOnInit(): void {
-    this.taskForm;
+    this.taskForm.patchValue(this.data);
   }
 
   onFormSubmit() {
-    if (this.taskForm.valid) {
-      this._taskService.addTask(this.taskForm.value).subscribe({
-        next: (val:any) => {
-          alert('Added a visitor!')
-          this._dialogRef.close()
-        },
-        error: (err:any) => {
-          console.error(err)
-        }
-      })
+    if (this.taskForm.valid)  {
+      if (this.data) {
+        this._taskService.updateTask(this.data.id, this.taskForm.value).subscribe({
+          next: (val: any) => {
+            alert('Updated a visitor!');
+            this._dialogRef.close(true);
+          },
+          error: (err: any) => {
+            console.error(err);
+          },
+        });
+      } else {
+        this._taskService.addTask(this.taskForm.value).subscribe({
+          next: (val: any) => {
+            alert('Added a visitor!');
+            this._dialogRef.close();
+          },
+          error: (err: any) => {
+            console.error(err);
+          },
+        });
+      }
     }
+  }
+
+  cancel(): void {
+    this._dialogRef.close();
   }
 }
