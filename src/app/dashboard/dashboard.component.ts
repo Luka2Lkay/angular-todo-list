@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddEditListComponent } from '../add-edit-list/add-edit-list.component';
 import { TasksService } from '../tasks.service';
@@ -85,5 +85,11 @@ export class DashboardComponent implements OnInit {
       },
       error: console.log,
     });
+  }
+
+@Input() selectedTask?: any
+
+  onSelect(task: any): void {
+this.selectedTask = task
   }
 }

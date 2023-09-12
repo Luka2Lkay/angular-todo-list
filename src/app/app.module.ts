@@ -13,14 +13,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatCardModule} from '@angular/material/card';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddEditListComponent } from './add-edit-list/add-edit-list.component';
+import { TaskDetailComponent } from './task-detail/task-detail.component';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, AddEditListComponent],
+  declarations: [AppComponent, DashboardComponent, AddEditListComponent, TaskDetailComponent],
   imports: [
     BrowserModule,
     MatButtonModule,
@@ -37,6 +41,9 @@ import { AddEditListComponent } from './add-edit-list/add-edit-list.component';
     HttpClientModule,
     MatTableModule,
     MatPaginatorModule,
+    MatProgressBarModule,
+    MatDividerModule,
+    MatCardModule 
   ],
   providers: [],
   bootstrap: [AppComponent],
