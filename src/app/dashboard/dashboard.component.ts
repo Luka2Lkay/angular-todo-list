@@ -1,17 +1,17 @@
-import { Component, OnInit, ViewChild, Input} from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddEditListComponent } from '../add-edit-list/add-edit-list.component';
 import { TasksService } from '../tasks.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
-
 export class DashboardComponent implements OnInit {
   title = 'To Do List';
 
@@ -30,7 +30,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private _dialogue: MatDialog,
-    private _taskService: TasksService
+    private _taskService: TasksService,
+    private router: Router
   ) {}
 
   openAddEditForm(): void {
@@ -78,7 +79,7 @@ export class DashboardComponent implements OnInit {
   }
 
   openEditForm(data: any): void {
-    const dialogRef = this._dialogue.open(AddEditListComponent, {data});
+    const dialogRef = this._dialogue.open(AddEditListComponent, { data });
     dialogRef.afterClosed().subscribe({
       next: () => {
         this.getTaskList();
@@ -87,9 +88,16 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-@Input() selectedTask?: any
+  selectedTask?: any;
 
   onSelect(task: any): void {
-this.selectedTask = task
+    this.selectedTask = task
+    this._taskService.getTask(task.id).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+    });
+
+    this.router.navigate(['/detail', task.id]);
   }
 }

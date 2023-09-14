@@ -4,6 +4,10 @@
   <button mat-raised-button (click)="openAddEditForm()">ADD TASK</button>
 </mat-toolbar>
 
+<nav>
+  <a routerLink="/heroes">Heroes</a>
+</nav>
+
 <div class="container">
   <mat-form-field>
     <mat-label>Filter</mat-label>
@@ -69,6 +73,6 @@
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
   </div>
 
-  <app-task-detail [selectedTask]="selectedTask"></app-task-detail>
-</div>
+  <!-- <app-task-detail [selectedTask]="selectedTask"></app-task-detail>
+</div> -->
 

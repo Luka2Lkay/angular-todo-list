@@ -22,6 +22,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddEditListComponent } from './add-edit-list/add-edit-list.component';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
+import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
   declarations: [AppComponent, DashboardComponent, AddEditListComponent, TaskDetailComponent],
@@ -43,7 +44,8 @@ import { TaskDetailComponent } from './task-detail/task-detail.component';
     MatPaginatorModule,
     MatProgressBarModule,
     MatDividerModule,
-    MatCardModule 
+    MatCardModule,
+    AppRoutingModule 
   ],
   providers: [],
   bootstrap: [AppComponent],
