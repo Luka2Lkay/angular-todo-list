@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TasksService } from '../tasks.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-task-detail',
@@ -10,24 +11,31 @@ import { TasksService } from '../tasks.service';
 export class TaskDetailComponent implements OnInit {
   @Input() selectedTask?: any;
 
+  title = 'To Do List';
+
   constructor(
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private _taskService: TasksService,
+    private location: Location
   ) {}
 
-  taskId?: any;
+  
   ngOnInit(): void {
     this.getTask();
   }
 
   getTask() {
-    this.taskId = this.route.snapshot.paramMap.get('id');
+    const taskId = this.activatedRoute.snapshot.paramMap.get('id');
     this._taskService.getTaskList().subscribe({
       next: (res) => {
-        const task = res.find((el: any) => el.id == this.taskId);
+        const task = res.find((el: any) => el.id == taskId);
         this.selectedTask = task;
       },
       error: console.log,
     });
+  }
+
+  goBack(): void {
+    this.location.back()
   }
 }

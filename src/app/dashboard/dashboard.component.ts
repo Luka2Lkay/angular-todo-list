@@ -88,16 +88,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  selectedTask?: any;
-
   onSelect(task: any): void {
-    this.selectedTask = task
-    this._taskService.getTask(task.id).subscribe({
-      next: (res) => {
-        console.log(res);
-      },
-    });
-
     this.router.navigate(['/detail', task.id]);
   }
 }
